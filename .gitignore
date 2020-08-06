@@ -15,3 +15,5 @@
 *.rb
 *.rs
 *.scala
+# profiling results
+*.cprof
