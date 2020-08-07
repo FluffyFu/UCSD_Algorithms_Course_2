@@ -1,20 +1,34 @@
-#python3
+# python3
 import sys
 
+
 class StackWithMax():
+    """
+    Implement a stack with the ability to return the current maximum in constant time.
+
+    Use an auxiliary stack to stack max{a1}, max{a1, a2} ... max{a1, a2, .. an}. Each time we push
+    a new item or pop an item, we update the auxiliary stack at the same time.
+    """
+
     def __init__(self):
-        self.__stack = []
+        self._stack = []
+        self._max_stack = []
 
     def Push(self, a):
-        self.__stack.append(a)
+        self._stack.append(a)
+        if len(self._max_stack) == 0:
+            self._max_stack.append(a)
+        else:
+            self._max_stack.append(max(a, self._max_stack[-1]))
 
     def Pop(self):
-        assert(len(self.__stack))
-        self.__stack.pop()
+        assert(len(self._stack))
+        self._stack.pop()
+        self._max_stack.pop()
 
     def Max(self):
-        assert(len(self.__stack))
-        return max(self.__stack)
+        assert(len(self._stack))
+        return self._max_stack[-1]
 
 
 if __name__ == '__main__':
