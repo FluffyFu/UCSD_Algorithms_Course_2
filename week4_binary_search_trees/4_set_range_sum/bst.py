@@ -11,7 +11,7 @@ from sys import stdin
 import sys
 import threading
 from enum import Enum
-from typing import List, Any, Union
+from typing import List, Any
 # from binarytree import Node
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)  # new thread will get stack of such size
@@ -77,7 +77,7 @@ class ColorNode(Node):
 
 class BST:
 
-    def __init__(self, root: Union[Node, ColorNode]):
+    def __init__(self, root: ColorNode):
         self._root = root
 
     @property
@@ -90,7 +90,7 @@ class BST:
         """
         return self._find(self._root, val)
 
-    def _find(self, node: Union[Node, ColorNode], val: int) -> bool:
+    def _find(self, node: Node, val: int) -> bool:
         """
         Internal function to find the given val the BST.
         """
@@ -108,7 +108,7 @@ class BST:
         """
         self._root = self._add(self._root, val)
 
-    def _add(self, node: Union[Node, ColorNode], val: int) -> Union[Node, ColorNode]:
+    def _add(self, node: ColorNode, val: int) -> Node:
         """
         Private method to add a new val to the BST specified by node.
         """
@@ -127,7 +127,7 @@ class BST:
         """
         self._root = self._del_min(self._root)
 
-    def _del_min(self, node: Union[Node, ColorNode]) -> Union[Node, ColorNode]:
+    def _del_min(self, node: Node) -> Node:
         """
         Private method to delete the minimum val in the BST.
         """
@@ -144,7 +144,7 @@ class BST:
         """
         self._root = self._del_max(self._root)
 
-    def _del_max(self, node: Union[Node, ColorNode]) -> Union[Node, ColorNode]:
+    def _del_max(self, node: Node) -> Node:
         """
         Private method to delete the maximum val in the tree.
         """
@@ -155,10 +155,10 @@ class BST:
         node.right = self._del_max(node.right)
         return node
 
-    def min(self) -> Union[Node, ColorNode]:
+    def min(self) -> Node:
         return self._min(self._root)
 
-    def _min(self, node: Union[Node, ColorNode]) -> Union[Node, ColorNode]:
+    def _min(self, node: Node) -> Node:
         if node == None or node.left == None:
             return node
         return self._min(node.left)
@@ -169,7 +169,7 @@ class BST:
         """
         self._root = self._delete(self._root, val)
 
-    def _delete(self, node: Union[Node, ColorNode], val: int) -> Union[Node, ColorNode]:
+    def _delete(self, node: Node, val: int) -> Node:
         """
         Private method to delete a val in the tree
         """
@@ -204,7 +204,7 @@ class BST:
 
         return res
 
-    def _get_range(self, node: Union[Node, ColorNode], low: int, high: int, q: List[int]) -> None:
+    def _get_range(self, node: Node, low: int, high: int, q: List[int]) -> None:
         """
         Private method to get the values in the tree that are between low and high.
         """
