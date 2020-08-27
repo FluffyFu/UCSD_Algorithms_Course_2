@@ -130,7 +130,7 @@ def test_rbt_get_range(my_tree_2):
 def test_client():
     client = Client(bst=RBT(None))
     answers = []
-    with open('tests/01') as f:
+    with open('tests/83') as f:
         n = int(f.readline())
         for q in f.readlines():
             res = client.request_from_file(q)
@@ -138,7 +138,7 @@ def test_client():
                 # convert to str for easier comparison
                 answers.append(str(res))
 
-    with open('tests/01.a') as f:
+    with open('tests/83.a') as f:
         truth = []
         for a in f.readlines():
             truth.append(a.strip())
